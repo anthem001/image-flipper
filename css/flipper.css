@@ -1,0 +1,17 @@
+﻿#imageButtonList{float:left;clear:both;}
+.imageButton {float:left;margin-left:3px;background-color: #efefef;text-align:center;border:1px solid black;padding:3px;}
+.imageButton a{text-decoration:none;color:black;}
+.sliderImage {float:left;padding: 0px 10px 10px 0px;}
+#slider{margin-top:25px;text-align:left;background-color: white;height:310px;margin-bottom: 10px;padding:11px;font:9pt verdana !important}
+.content{
+    font:9pt verdana !important;
+    margin-left:10px;
+    width:170px;
+ 
+    float:left;
+ -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;				
+}
+

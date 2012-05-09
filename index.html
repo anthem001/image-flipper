@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>Image Flipper</title>
+<script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script language="JavaScript" src="js/flipper.js"></script>
+
+
+</head>
+<body>
+<div id="slider">
+
+<dl id="toggle1">
+<dd>
+<img alt="Image1" class="sliderImage"
+width="325" height="255" src=
+"images/Koala.jpg"
+longdesc="Loading.." />
+<table class="content">
+<tr>
+<td valign="top">
+<div>
+<div>Content Text</div>
+</div>
+<a href="http://github.com"
+style="color:#004990;text-decoration: underline">Read
+More...</a></td>
+</tr>
+</table>
+</dd>
+</dl>
+
+<dl id="toggle2">
+<dd>
+<img alt="Image2" class="sliderImage"
+width="325" height="255" src=
+"images/Desert.jpg"
+longdesc="Loading.." />
+<table class="content">
+<tr>
+<td valign="top">
+<div>
+<div>Content Text</div>
+</div>
+<a href="http://github.com"
+style="color:#004990;text-decoration: underline">Read
+More...</a></td>
+</tr>
+</table>
+</dd>
+</dl>
+
+<dl id="toggle3">
+<dd>
+<img alt="Image3" class="sliderImage"
+width="325" height="255" src=
+"images/Penguins.jpg"
+longdesc="Loading.." />
+<table class="content">
+<tr>
+<td valign="top">
+<div>
+<div>Content Text</div>
+</div>
+<a href="http://github.com"
+style="color:#004990;text-decoration: underline">Read
+More...</a></td>
+</tr>
+</table>
+</dd>
+</dl>
+
+</div><script language="JavaScript">
+var thisInterval;
+var imageIterate = new imageIterator();
+imagesRotateTimeout();
+
+function restartAtNumber(number)
+{
+    clearTimeout(thisInterval);
+    imageIterate.goToNum(number);
+    imageIterate.iterateImages(number);
+    imageIterate.addClicks();
+    thisInterval = setTimeout(imagesRotateTimeout, 8000);
+}
+
+function imagesRotateTimeout()
+{
+    imageIterate.iterateImages();  
+    imageIterate.addClicks();
+    thisInterval = setTimeout(imagesRotateTimeout, 8000);
+}
+	</script>
+</body>
+</html>
