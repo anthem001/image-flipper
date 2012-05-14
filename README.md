@@ -17,6 +17,10 @@ link rel="stylesheet" href="css/flipper.css"
 
 To use you'll need to add as many <dl> tags as you need in your body tag. The images will automagically be rotated and counted:
 
+
+    <p>First name: <span data-bind=" text: firstName ">todo</span></p>
+    <p>Last name: <span data-bind=" text: lastName ">todo</span></p>
+
   <div id="slider">
   <!-- your dl tags -->
   <dl id="toggle1">
