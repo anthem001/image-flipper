@@ -37,6 +37,7 @@ var imageIterator = function(){
 
 imageIterator.prototype = function(){
     var iterateImages = function(){
+        console.log("test");
         if(this.currentIterator < this.imageCount )
         {
             //rehide images
@@ -61,7 +62,8 @@ imageIterator.prototype = function(){
         this.slider.slide(correctId);
         this.buttonNav.clearHighlight();
         this.buttonNav.highlightButton(id);   
-        this.currentIterator = id -1;       
+        this.currentIterator = id -1; 
+        iterateImages();      
     },
     addClicks = function ()
     {
@@ -120,7 +122,19 @@ buttonNav.prototype = function(){
 
 }();
 
+var thisInterval = setInterval(imagesRotateTimeout, 2000);
+var imageIterate = new imageIterator();
+imagesRotateTimeout();
 
+function imagesRotateTimeout()
+{
+    imageIterate.iterateImages();  
+    imageIterate.addClicks();
+}
 
-
-
+function restartAtNumber(number)
+{
+    clearInterval(thisInterval);
+    imageIterate.goToNum(number);
+    thisInterval = setInterval(imagesRotateTimeout, 2000);
+}
