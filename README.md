@@ -16,7 +16,7 @@ Then the stylesheet (or use your own):
 link rel="stylesheet" href="css/flipper.css"
 
 To use you'll need to add as many <dl> tags as you need in your body tag. The images will automagically be rotated and counted:
-
+<pre>
 <div id="slider">
 
 <!-- your dl tags -->
@@ -36,3 +36,4 @@ To use you'll need to add as many <dl> tags as you need in your body tag. The im
 </dl>
 
 </div>
+</pre>
