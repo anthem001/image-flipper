@@ -4,16 +4,16 @@ image-flipper
 Takes a structured set of HTML and creates a rotating image with text and paging utilizing JQuery.
 
 First reference JQuery:
-<code>
-<script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-</code>
+
+script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+
 Then the flipper js:
 
-<script language="JavaScript" src="js/flipper.js"></script>
+script language="JavaScript" src="js/flipper.js"
 
 Then the stylesheet (or use your own):
 
-<link rel="stylesheet" href="css/flipper.css">
+link rel="stylesheet" href="css/flipper.css"
 
 To use you'll need to add as many <dl> tags as you need in your body tag. The images will automagically be rotated and counted:
 
