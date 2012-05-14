@@ -71,7 +71,7 @@ imageIterator.prototype = function(){
         var buttonNav = this.buttonNav;
         $(".imageButton a").click(function() {
                 var numbers = $(this).text();
-                restartAtNumber(numbers);        
+    			imageIterate.goToNum(numbers);  
             });
     };
 
@@ -122,7 +122,8 @@ buttonNav.prototype = function(){
 
 }();
 
-var thisInterval = setInterval(imagesRotateTimeout, 2000);
+var rotateInterval = 6000;
+var thisInterval = setInterval(imagesRotateTimeout, rotateInterval);
 var imageIterate = new imageIterator();
 imagesRotateTimeout();
 
@@ -132,9 +133,3 @@ function imagesRotateTimeout()
     imageIterate.addClicks();
 }
 
-function restartAtNumber(number)
-{
-    clearInterval(thisInterval);
-    imageIterate.goToNum(number);
-    thisInterval = setInterval(imagesRotateTimeout, 2000);
-}
