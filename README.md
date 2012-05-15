@@ -5,10 +5,6 @@ Takes a structured set of HTML and creates a rotating image with text and paging
 
 First reference JQuery:
 
-<code>
-<script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-</code>
-
     <script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 Then the flipper js:
