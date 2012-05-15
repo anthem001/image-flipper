@@ -35,5 +35,4 @@ To use you'll need to add as many "dl" tags as you need in your body tag. The im
     </dl>
     <!--end dl tag-->
     </div>
-    </code>
 
