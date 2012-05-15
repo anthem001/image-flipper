@@ -37,7 +37,6 @@ var imageIterator = function(){
 
 imageIterator.prototype = function(){
     var iterateImages = function(){
-        console.log("test");
         if(this.currentIterator < this.imageCount )
         {
             //rehide images
