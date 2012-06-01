@@ -1,30 +1,43 @@
 var imageSlider = function(){
-    this.sliderImages = $('#slider dl');
-    this.imageCount = this.sliderImages.size();
+    var sliderImage = document.getElementById("slider");
+    var dlArray = [];
+    if(sliderImage)
+    {
+    	dlArray = sliderImage.getElementsByTagName("dl");
+    }
+    this.sliderImages = dlArray; 
+    this.imageCount = this.sliderImages.length;
 };
 
-imageSlider.prototype = function(){
+imageSlider.prototype = (function(){
     /* hides all images  */
+ 
     var hideImages = function(){
-        this.sliderImages.each(function (index){
-           $(this).hide();
-        });
+    	var i=0;
+    	while(i<this.imageCount)
+    	{
+    		this.sliderImages[i].style.display = "none";
+    		i++;
+    	}
     },
     /* mechanism to show specific image */
-    slide = function(myIterator){              
-        this.sliderImages.each(function (index){
-            if(index == myIterator)
-            {
-                $(this).show();
-            }
-        });
+    slide = function(myIterator){ 
+    	var s = 0;
+    	while(s < this.imageCount)
+    	{
+    		if(s === myIterator)
+    		{
+    			this.sliderImages[s].style.display = "block";
+    		}
+    		s++;
+    	}         
     };
         return {
             //public members
             slide: slide,
             hideImages: hideImages
         };
-}();
+}());
 
 var imageIterator = function(){
     this.slider = new imageSlider();
@@ -35,7 +48,7 @@ var imageIterator = function(){
     this.buttonNav.createButtons();
 };
 
-imageIterator.prototype = function(){
+imageIterator.prototype = (function(){
     var iterateImages = function(){
         if(this.currentIterator < this.imageCount )
         {
@@ -56,6 +69,8 @@ imageIterator.prototype = function(){
         }        
     },
     goToNum = function(id){
+    	/* broken */
+    	console.log(this.currentIterator);
         var correctId = id -1;
         this.slider.hideImages();
         this.slider.slide(correctId);
@@ -66,12 +81,21 @@ imageIterator.prototype = function(){
     },
     addClicks = function ()
     {
-        var slider = this.slider;
-        var buttonNav = this.buttonNav;
-        $(".imageButton a").click(function() {
-                var numbers = $(this).text();
-    			imageIterate.goToNum(numbers);  
-            });
+        var allLinks = document.getElementsByTagName("a"), i;
+ 		var thisNode = [];
+        for (i in allLinks)
+        {
+
+        if((" "+allLinks[i].className+" ").indexOf(" buttonImage ") > -1)
+            {
+            	
+            	allLinks[i].onclick = function(){
+            		var number = this.innerHTML;
+            		goToNum(number);
+            	};
+			
+            }
+        }
     };
 
     return {
@@ -81,7 +105,7 @@ imageIterator.prototype = function(){
 
     };
 
-}();
+}());
 
 
 /* this will create the clickable buttons */
@@ -90,7 +114,7 @@ var buttonNav = function(){
     this.imageCount = this.slider.imageCount;
 };
 
-buttonNav.prototype = function(){
+buttonNav.prototype = (function(){
     var createButtons = function(){
         var imageNum = this.imageCount;  
         var slider = this.slider;                  
@@ -98,7 +122,7 @@ buttonNav.prototype = function(){
         for(var i=0;i<imageNum;i++)
         {
             var iteratorAdjust = i+1;
-            $("#imageButtonList").append("<span class='imageButton'><a href='#'>"+iteratorAdjust+"</a></span>");
+            $("#imageButtonList").append("<span class='imageButton'><a href='#' class='buttonImage'>"+iteratorAdjust+"</a></span>");
             
         }
        // $("#slider").append("</span>");
@@ -119,7 +143,7 @@ buttonNav.prototype = function(){
         clearHighlight: clearHighlight
     };
 
-}();
+}());
 
 var rotateInterval = 6000;
 var thisInterval = setInterval(imagesRotateTimeout, rotateInterval);
