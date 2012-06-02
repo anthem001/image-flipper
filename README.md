@@ -3,7 +3,7 @@
 
 Takes a structured set of HTML (dl tags and images) and "flips" through them with text and paging in pure JavaScript.
 
-Simpley add flipper.js to the bottom of your page:
+Simply add flipper.js to the bottom of your page:
 
     <script language="JavaScript" src="js/flipper.js"></script>
 
@@ -36,6 +36,6 @@ The images will automagically be flipped.
 
 Note: to change flip timeout open flipper.js and modify the timeout at the bottom.
 
-Heppy Flipping!
+Happy Flipping!
 
 
