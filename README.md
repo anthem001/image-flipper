@@ -1,8 +1,9 @@
 # image-flipper
 =============
 
-Takes a structured set of HTML and creates a rotating image with text and paging in pure JavaScript (look Ma! No JQuery)
-Add flipper.js to the bottom of your page:
+Takes a structured set of HTML (dl tags and images) and "flips" through them with text and paging in pure JavaScript.
+
+Simpley add flipper.js to the bottom of your page:
 
     <script language="JavaScript" src="js/flipper.js"></script>
 
@@ -10,7 +11,7 @@ Then the stylesheet in the head (or use your own):
 
     <link rel="stylesheet" href="css/flipper.css"/>
 
-To use you'll need to add as many "dl" tags (along with images) as you need in your body tag. The images will automagically be rotated and counted:
+Template: To use you'll need to add as many "dl" tags (along with images) as you need in your body tag. IMPORTANT: keep same class names/ids. 
 
     <div id="slider">
     <!-- your dl tags -->
@@ -30,5 +31,11 @@ To use you'll need to add as many "dl" tags (along with images) as you need in y
     </dl>
     <!--end dl tag-->
     </div>
+    
+The images will automagically be flipped.
+
+Note: to change flip timeout open flipper.js and modify the timeout at the bottom.
+
+Heppy Flipping!
 
 
