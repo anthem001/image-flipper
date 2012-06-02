@@ -1,8 +1,6 @@
 <html>
 <head>
 <title>Image Flipper</title>
-<script language="JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script language="JavaScript" src="js/flipper.js"></script>
 <link rel="stylesheet" href="css/flipper.css">
 
 
@@ -130,26 +128,6 @@ More...</a></td>
 </dd>
 </dl>
 
-</div><script language="JavaScript">
-var thisInterval;
-var imageIterate = new imageIterator();
-imagesRotateTimeout();
-
-function restartAtNumber(number)
-{
-    clearTimeout(thisInterval);
-    imageIterate.goToNum(number);
-    imageIterate.iterateImages(number);
-    imageIterate.addClicks();
-    thisInterval = setTimeout(imagesRotateTimeout, 8000);
-}
-
-function imagesRotateTimeout()
-{
-    imageIterate.iterateImages();  
-    imageIterate.addClicks();
-    thisInterval = setTimeout(imagesRotateTimeout, 8000);
-}
-	</script>
+</div><script type="text/javascript" src="js/flipper.js"></script>
 </body>
 </html>
