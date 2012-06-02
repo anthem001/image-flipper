@@ -1,150 +1,97 @@
-var imageSlider = function() {
-	var sliderImage = document.getElementById("slider");
-	var dlArray = [];
-	if(sliderImage) {
-		dlArray = sliderImage.getElementsByTagName("dl");
-	}
-	this.sliderImages = dlArray;
-	this.imageCount = this.sliderImages.length;
+var ImageRotator = function() {
+	this.images = document.getElementById("slider");
+	this.currentIterator = 0;
+	this.imageTimeout = 5000;
+	this.dlArray = this.images.getElementsByTagName("dl");
+	this.numSliderImages = this.dlArray.length;
+	this.createButtons();
 };
 
-imageSlider.prototype = ( function() {
-		/* hides all images  */
-
-		var hideImages = function() {
-			var i = 0;
-			while(i < this.imageCount) {
-				this.sliderImages[i].style.display = "none";
-				i++;
-			}
-		},
-		/* mechanism to show specific image */
-		slide = function(myIterator) {
-			var s = 0;
-			while(s < this.imageCount) {
-				if(s === myIterator) {
-					this.sliderImages[s].style.display = "block";
-				}
-				s++;
-			}
-		};
-		return {
-			//public members
-			slide : slide,
-			hideImages : hideImages
-		};
-	}());
-
-var addClicks = function() {
-	this.imageIterator = new imageIterator();
-	this.allLinks = document.getElementsByTagName("a"), i;
-	this.thisNode = [];
-};
-
-addClicks.prototype = function() {
-
-	for(i in this.allLinks) {
-
-		if((" " + this.allLinks[i].className + " ").indexOf(" buttonImage ") > -1) {
-
-			this.allLinks[i].onclick = function() {
-				this.imageIterator.goToNum(this.innerHTML);
-			};
-
+ImageRotator.prototype = function() {
+	var hideAllImages = function() {
+		var i = 0;
+		while (i < this.numSliderImages) {
+			this.dlArray[i].style.display = "none";
+			i++;
 		}
-	}
+	}, displayImage = function() {
+		if (this.currentIterator < this.numSliderImages) {
+			//rehide images
+			this.hideAllImages();
+			//show specific image
+			this.dlArray[this.currentIterator].style.display = "block";
+			this.highlightButton();
+			//iterate the index
+			this.currentIterator++;
+		} else {
+			this.currentIterator = 0;
+		}
+	}, createButtons = function() {
+		var dl = document.createElement('dl');
+		dl.id = "imageButtonList";
+		this.images.appendChild(dl);
+		var goToNum = this.goToNum;
+		var imageButtonList = document.getElementById("imageButtonList");
+		for (var i = 0; i < this.numSliderImages; i++) {
+			var iteratorAdjust = i + 1;
+			var link = document.createElement('button');
+			link.setAttribute('id', 'button' + i);
+			link.innerHTML = iteratorAdjust;
+			imageButtonList.appendChild(link);
+
+			var buttons = imageButtonList.childNodes[i];
+			buttons.onclick = function() {
+				buttonMove();
+			};
+		}
+	}, goToNum = function(num) {
+		var adjustNum = num - 1;
+		this.hideAllImages();
+		this.currentIterator = adjustNum;
+		this.dlArray[adjustNum].style.display = "block";
+		this.highlightButton();
+		this.currentIterator++;
+	}, highlightButton = function() {
+		this.clearHighlight();
+		var imageButtonList = document.getElementById("imageButtonList").childNodes;
+		var currentButton = imageButtonList[this.currentIterator];
+		currentButton.style.backgroundColor = "#004990";
+		currentButton.style.color = "#FFF";
+		currentButton.style.fontWeight = "900";
+
+	}, clearHighlight = function() {
+		var imageButtonList = document.getElementById("imageButtonList").childNodes;
+		for ( i = 0; i < imageButtonList.length; i++) {
+			var currentButton = imageButtonList[i];
+			currentButton.style.backgroundColor = "#efefef";
+			currentButton.style.color = "#000";
+			currentButton.style.fontWeight = "normal";
+		}
+	};
+
+	return {
+		hideAllImages : hideAllImages,
+		displayImage : displayImage,
+		createButtons : createButtons,
+		highlightButton : highlightButton,
+		clearHighlight : clearHighlight,
+		goToNum : goToNum
+	};
 }();
 
-var imageIterator = function() {
-	this.slider = new imageSlider();
+//set timeout
+var timeOut = 5000;
 
-	this.slider.hideImages();
-	this.imageCount = this.slider.imageCount;
-	this.currentIterator = 0;
-	this.buttonNav = new buttonNav();
-	this.buttonNav.createButtons();
-		
-};
-
-imageIterator.prototype = ( function() {
-		var iterateImages = function() {
-			if(this.currentIterator < this.imageCount) {
-				//rehide images
-				this.slider.hideImages();
-				//show specific image
-				this.slider.slide(this.currentIterator);
-				//highlight specific button
-				this.buttonNav.clearHighlight();
-				this.buttonNav.highlightButton(this.currentIterator + 1);
-				//iterate the index
-				//console.log(this.currentIterator);
-				this.currentIterator++;
-			} else {
-				this.currentIterator = 0;
-			}
-			this.addClicks = new addClicks();
-		}, goToNum = function(id) {
-			/* broken */
-			console.log(this.currentIterator);
-			var correctId = id - 1;
-			this.slider.hideImages();
-			this.slider.slide(correctId);
-			this.buttonNav.clearHighlight();
-			this.buttonNav.highlightButton(id);
-			this.currentIterator = id - 1;
-			iterateImages();
-		};
-
-		return {
-			iterateImages : iterateImages,
-			addClicks : addClicks,
-			goToNum : goToNum
-
-		};
-
+//init
+var thisrotator = new ImageRotator();
+var myTimeout; ( function() {
+		thisrotator.displayImage(0);
+		myTimeout = window.setInterval(function() {
+			thisrotator.displayImage();
+		}, timeOut);
 	}());
 
-/* this will create the clickable buttons */
-var buttonNav = function() {
-	this.slider = new imageSlider();
-	this.imageCount = this.slider.imageCount;
-};
-
-buttonNav.prototype = ( function() {
-		var createButtons = function() {
-			var imageNum = this.imageCount;
-			var slider = this.slider;
-			$("#slider").append("<dl id='imageButtonList'>");
-			for(var i = 0; i < imageNum; i++) {
-				var iteratorAdjust = i + 1;
-				$("#imageButtonList").append("<span class='imageButton'><a href='#' class='buttonImage'>" + iteratorAdjust + "</a></span>");
-
-			}
-			// $("#slider").append("</span>");
-		}, clearHighlight = function() {
-			$(".imageButton").css("background-color", "#efefef");
-			$(".imageButton").children().css("color", "black");
-		}, highlightButton = function(buttonToHighlight) {
-			var highlightButton = $(".imageButton:contains('" + buttonToHighlight + "')");
-			highlightButton.css("background-color", "#004990");
-			highlightButton.children().css("color", "white");
-		};
-
-		return {
-			createButtons : createButtons,
-			highlightButton : highlightButton,
-			clearHighlight : clearHighlight
-		};
-
-	}());
-
-var rotateInterval = 6000;
-var thisInterval = setInterval(imagesRotateTimeout, rotateInterval);
-var imageIterate = new imageIterator();
-imagesRotateTimeout();
-
-function imagesRotateTimeout() {
-	imageIterate.iterateImages();
-
+function buttonMove(e) {
+	e = e || window.event;
+	thisrotator.goToNum(e.srcElement.innerHTML);
 }
-
