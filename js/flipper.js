@@ -93,6 +93,9 @@ var myTimeout; ( function() {
 
 function buttonMove(e) {
     e = e || window.event;
+	if(e.preventDefault){
+    	e.preventDefault();
+    }
     var target = e.srcElement || e.target;
     thisrotator.goToNum(target.innerHTML);  
 }
