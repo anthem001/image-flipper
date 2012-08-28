@@ -1,17 +1,31 @@
-﻿#imageButtonList{float:left;clear:both;padding-left:35px}
-.imageButton {float:left;margin-left:3px;background-color: #efefef;text-align:center;border:1px solid black;padding:3px;}
-.imageButton a{text-decoration:none;color:black;}
-.sliderImage {float:left;padding: 0px 10px 10px 0px;}
-#slider{margin-top:25px;text-align:left;background-color: white;height:310px;margin-bottom: 10px;padding:11px;font:9pt verdana !important}
+﻿#imageButtonList{float:left;clear:both;padding-left:45px}
+.imageButton {float:left;margin-left:3px;text-align:center;border:1px solid black;padding:3px;}
+.imageButton a{text-decoration:none;color:black;padding:3px;}
+.sliderImage {float:left;padding: 0px 5px 0px 0px;}
+#slider{text-align:left;height:310px;font:9pt verdana !important;padding-top:15px;
+border-radius: 15px;
+border: 1px solid #66669A;
+}
 .content{
     font:9pt verdana !important;
-    margin-left:10px;
-    width:170px;
- 
-    float:left;
- -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;				
+    width:162px;
+    padding-left:4px;
+    float:left;	color:black;		
 }
-
+.content a {color:red;}
+button{
+-webkit-box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.0.1) 0 1px 0 0;
+	background-color:#5B74A8;
+	border:1px solid #29447E;
+	font-family:Verdana,Arial,sans-serif;
+	font-size:12px;
+	font-weight:900;
+	padding:2px 6px;
+	height:22px;
+	color:#fff;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px
+}
