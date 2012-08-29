@@ -5,6 +5,7 @@
 #slider{text-align:left;height:310px;font:9pt verdana !important;padding-top:15px;
 border-radius: 15px;
 border: 1px solid #66669A;
+visibility: hidden;
 }
 .content{
     font:9pt verdana !important;

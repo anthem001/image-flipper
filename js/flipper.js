@@ -1,5 +1,6 @@
 var ImageRotator = function() {
     this.images = document.getElementById("slider");
+	this.images.style.visibility = "visible";
     this.currentIterator = 0;
     this.imageTimeout = 5000;
     this.dlArray = this.images.getElementsByTagName("dl");
