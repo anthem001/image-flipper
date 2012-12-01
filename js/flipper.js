@@ -1,5 +1,5 @@
-var ImageRotator = function() {
-    this.images = document.getElementById("slider");
+var ImageRotator = function(slider) {
+    this.images = slider;
 	this.images.style.visibility = "visible";
     this.currentIterator = 0;
     this.imageTimeout = 5000;
@@ -84,7 +84,8 @@ ImageRotator.prototype = function() {
 var timeOut = 5000;
 
 //init
-var thisrotator = new ImageRotator();
+var slider = document.getElementById('slider');
+var thisrotator = new ImageRotator(slider);
 var myTimeout; ( function() {
         thisrotator.displayImage(0);
         myTimeout = window.setInterval(function() {
