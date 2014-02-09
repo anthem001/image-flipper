@@ -56,6 +56,7 @@ ImageRotator.prototype = function() {
 
         for (var i = 0; i < this.numSliderImages; i++) {
 
+            var that = this;
             var iteratorAdjust = i + 1;
             var link = document.createElement('button');
             
@@ -66,12 +67,25 @@ ImageRotator.prototype = function() {
 
             imageButtonList.childNodes[i].onclick = function (e){
 
-                buttonClicked(e);
+                var num = buttonClicked(e);
+                that.goToNum(num); 
 
             };
 
 
         }
+    }, 
+
+
+    goToNum = function(num) {
+
+        var adjustNum = num - 1;
+        this.hideAllImages();
+        this.currentIterator = adjustNum;
+        this.dlArray[adjustNum].style.display = "block";
+        this.highlightButton();
+        this.currentIterator++;
+
     }, 
 
     /* button click event handler */
@@ -82,24 +96,19 @@ ImageRotator.prototype = function() {
         if(e.preventDefault){
         
             e.preventDefault();
-            
+
         }
         
         var target = e.srcElement || e.target;
-        this.goToNum(target.innerHTML); 
+        var num = target.innerHTML;
+        return num;
+        
 
     },
 
-    goToNum = function(num) {
-        var adjustNum = num - 1;
-        this.hideAllImages();
-        this.currentIterator = adjustNum;
-        this.dlArray[adjustNum].style.display = "block";
-        this.highlightButton();
-        this.currentIterator++;
-    }, 
 
     highlightButton = function() {
+
         this.clearHighlight();
         var imageButtonList = document.getElementById("imageButtonList").childNodes;
         var currentButton = imageButtonList[this.currentIterator];
@@ -120,12 +129,14 @@ ImageRotator.prototype = function() {
     };
 
     return {
+
         hideAllImages : hideAllImages,
         displayImage : displayImage,
         createButtons : createButtons,
         highlightButton : highlightButton,
         clearHighlight : clearHighlight,
         goToNum : goToNum
+
     };
 }();
 
@@ -141,7 +152,3 @@ var myTimeout; ( function() {
             thisrotator.displayImage();
         }, timeOut);
     }());
-
-function buttonMove(e) {
-    
-}
