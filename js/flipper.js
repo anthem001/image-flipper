@@ -80,7 +80,7 @@ ImageRotator.prototype = function() {
             link.innerHTML = iteratorAdjust;
             imageButtonList.appendChild(link);
 
-            imageButtonList.childNodes[i].onclick = function (e){
+            imageButtonList.childNodes[i].onclick = function (e) {
 
                 var num = buttonClicked(e);
                 that.goToNum(num); 
@@ -134,7 +134,7 @@ ImageRotator.prototype = function() {
 
     clearHighlight = function() {
         var imageButtonList = document.getElementById("imageButtonList").childNodes;
-        for ( i = 0; i < imageButtonList.length; i++) {
+        for (var i = 0; i < imageButtonList.length; i++) {
             var currentButton = imageButtonList[i];
             currentButton.style.backgroundColor = "#efefef";
             currentButton.style.color = "#000";
