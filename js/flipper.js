@@ -1,19 +1,33 @@
-var ImageRotator = function(slider) {
+var ImageRotator = function(timeout) {
 
-    this.images = slider;
+    this.images = document.getElementById('slider');;
 	this.images.style.visibility = "visible";
     this.currentIterator = 0;
-    this.imageTimeout = 5000;
+    this.imageTimeout = timeout;
     this.dlArray = this.images.getElementsByTagName("dl");
     this.numSliderImages = this.dlArray.length;
-    this.createButtons();
+    this.init(timeout);
 
 };
 
 ImageRotator.prototype = function() {
 
+    var init = function (timeout) {
+    
+        var that = this;
+        this.createButtons();
+        this.displayImage(0);
+        
+        window.setInterval(function() {
+
+            that.displayImage();
+
+        }, timeout);
+
+    },
+
     /* hides all images to start */
-    var hideAllImages = function() {
+    hideAllImages = function() {
 
         var i = 0;
         while (i < this.numSliderImages) {
@@ -134,20 +148,12 @@ ImageRotator.prototype = function() {
         createButtons : createButtons,
         highlightButton : highlightButton,
         clearHighlight : clearHighlight,
-        goToNum : goToNum
+        goToNum : goToNum,
+        init : init
 
     };
 }();
 
-//set timeout
-var timeOut = 5000;
 
-//init
-var slider = document.getElementById('slider');
-var thisrotator = new ImageRotator(slider);
-var myTimeout; ( function() {
-        thisrotator.displayImage(0);
-        myTimeout = window.setInterval(function() {
-            thisrotator.displayImage();
-        }, timeOut);
-    }());
+var thisrotator = new ImageRotator(5000);
+
