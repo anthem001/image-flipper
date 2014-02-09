@@ -76,7 +76,7 @@ ImageRotator.prototype = function() {
         }
     }, 
 
-
+    /* go to specific cell number */
     goToNum = function(num) {
 
         var adjustNum = num - 1;
@@ -88,7 +88,7 @@ ImageRotator.prototype = function() {
 
     }, 
 
-    /* button click event handler */
+    /* button click event handler, returns number clicked */
     buttonClicked = function (e) {
 
         e = e || window.event;
@@ -102,7 +102,6 @@ ImageRotator.prototype = function() {
         var target = e.srcElement || e.target;
         var num = target.innerHTML;
         return num;
-        
 
     },
 
