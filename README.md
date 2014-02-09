@@ -5,11 +5,19 @@ Takes a structured set of HTML (dl tags and images) and "flips" through them wit
 
 Simply add flipper.js to the bottom of your page:
 
-    <script language="JavaScript" src="js/flipper.js"></script>
+    <script language="JavaScript" src="js/flipper.min.js"></script>
 
-Then the stylesheet in the head (or use your own):
+Add the stylesheet in the head (or use your own):
 
     <link rel="stylesheet" href="css/flipper.css"/>
+
+Then call the object after you include the flipper.js (passing in the delay between images switches in milliseconds)
+
+    <script language="JavaScript"> 
+
+    var thisrotator = new ImageRotator(5000);
+
+    </script>
 
 Template: To use you'll need to add as many "dl" tags (along with images) as you need in your body tag. IMPORTANT: keep same class names/ids. 
 
