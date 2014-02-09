@@ -58,18 +58,37 @@ ImageRotator.prototype = function() {
 
             var iteratorAdjust = i + 1;
             var link = document.createElement('button');
-            var buttons = imageButtonList.childNodes[i];
+            
 
             link.setAttribute('id', 'button' + i);
             link.innerHTML = iteratorAdjust;
             imageButtonList.appendChild(link);
 
-            buttons.onclick = function(e) {
-                buttonMove(e);
+            imageButtonList.childNodes[i].onclick = function (e){
+
+                buttonClicked(e);
+
             };
+
 
         }
     }, 
+
+    /* button click event handler */
+    buttonClicked = function (e) {
+
+        e = e || window.event;
+         
+        if(e.preventDefault){
+        
+            e.preventDefault();
+            
+        }
+        
+        var target = e.srcElement || e.target;
+        this.goToNum(target.innerHTML); 
+
+    },
 
     goToNum = function(num) {
         var adjustNum = num - 1;
@@ -124,10 +143,5 @@ var myTimeout; ( function() {
     }());
 
 function buttonMove(e) {
-    e = e || window.event;
-	if(e.preventDefault){
-    	e.preventDefault();
-    }
-    var target = e.srcElement || e.target;
-    thisrotator.goToNum(target.innerHTML);  
+    
 }
