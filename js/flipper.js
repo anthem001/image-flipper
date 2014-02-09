@@ -1,18 +1,18 @@
-var ImageRotator = function(timeout) {
+var ImageRotator = function(delay) {
 
-    this.images = document.getElementById('slider');;
+    this.images = document.getElementById('slider');
 	this.images.style.visibility = "visible";
     this.currentIterator = 0;
-    this.imageTimeout = timeout;
+    this.imageTimeout = delay;
     this.dlArray = this.images.getElementsByTagName("dl");
     this.numSliderImages = this.dlArray.length;
-    this.init(timeout);
+    this.init(delay);
 
 };
 
 ImageRotator.prototype = function() {
 
-    var init = function (timeout) {
+    var init = function (delay) {
     
         var that = this;
         this.createButtons();
@@ -22,7 +22,7 @@ ImageRotator.prototype = function() {
 
             that.displayImage();
 
-        }, timeout);
+        }, delay);
 
     },
 
@@ -51,6 +51,7 @@ ImageRotator.prototype = function() {
 
             //iterate the index
             this.currentIterator++;
+
         } else {
 
             this.currentIterator = 0;
@@ -153,7 +154,3 @@ ImageRotator.prototype = function() {
 
     };
 }();
-
-
-var thisrotator = new ImageRotator(5000);
-
